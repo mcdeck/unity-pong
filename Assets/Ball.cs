@@ -6,6 +6,8 @@ public class Ball : MonoBehaviour
 {
     public float speed = 30;
 
+    public GameState gameState;
+
     void Start() {
         // Initial Velocity
         GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
@@ -57,5 +59,10 @@ public class Ball : MonoBehaviour
         // ||
         // || -1 <- at the bottom of the racket
         return (ballPos.y - racketPos.y) / racketHeight;
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        gameState.setCanScore(true);
     }
 }
